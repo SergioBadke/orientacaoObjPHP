@@ -1,17 +1,28 @@
 <?php
 
+function ePrimo($num) {
+    if ($num <= 1) {
+        return false;
+    }
+    for ($i = 2; $i <= sqrt($num); $i++) {
+        if ($num % $i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
 $vetor = array();
 $leitor = 1;
-while ($leitor != 0) {
-    $leitor = readline("Informe um numero: ");
-    if ($leitor != 1) {
-        if ($leitor % 2 != 0 or $leitor == 2) {
-            if ($leitor % 3 != 0 or $leitor == 3) {
-                if ($leitor % 5 != 0 or $leitor == 5) {
-                    array_push($vetor, $leitor);
-                }
-            }
-        }
+while (true) {
+    $numero = readline("Digite um número: ");
+
+    if ($numero == 0) {
+        break;
+    }
+
+    if (ePrimo($numero)) {
+        $vetor[] = $numero;
     }
 }
 print_r($vetor);
